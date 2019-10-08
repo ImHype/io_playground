@@ -68,39 +68,32 @@ int select_start_loop(loop_t * loop) {
 
         wq_t * wq = loop->wq;
 
-        int maxfd = -1;
-        int has_fd = 0;
 
-        int count = 0;
+        int fd_size = 0;
 
         QUEUE_FOREACH(q, &wq->queue) {
-            watcher_t * watcher = QUEUE_DATA(q, watcher_t, queue);
-            int fd = watcher->fd;
-            has_fd = 1;
-            count++;
-            
-            if (fd > maxfd)
-                maxfd = fd;
+            fd_size++;
         }
    
-        if (!has_fd) {
+        if (fd_size == 0) {
             return 0;
         }
-        printf("maxfd%d, count %d\n", maxfd, count);
+
+        printf("fd_size %d\n", fd_size);
 
         fd_set tmpset = *fds;
 
         struct timeval tv;
         tv.tv_sec = 5;
 
-        int r = select(maxfd + 1, &tmpset, NULL, NULL, &tv);
+        int r = select(fd_size, &tmpset, NULL, NULL, &tv);
 
         if (r < 0) do {
                 perror("select()");
                 break;
             } while(0);
         else if (r) {
-            printf("count %d\n", r);
+            printf("fd_size %d\n", r);
             QUEUE * q;
             QUEUE_FOREACH(q, &loop->wq->queue) {
                 watcher_t * watcher = QUEUE_DATA(q, watcher_t, queue);
