@@ -1,0 +1,20 @@
+# 配置缓存策略，前端工程一般缓存 node_modules 即可
+cache:
+  key: "$CI_PROJECT_PATH-$CI_COMMIT_REF_SLUG"
+  paths:
+    - node_modules/
+
+before_script:      # 脚本执行前进行分支拉去和依赖安装
+  - git fetch --all
+  - yarn install --registry=http://bnpm.byted.org
+
+stages:
+  - test
+
+test: # 配置 JOB 名称
+  stage: test
+  tags:    # 必须配置项
+    - fe
+    - xdev
+  script:   # script 这里配置执行的脚本
+    - echo 'test'

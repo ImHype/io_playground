@@ -1,0 +1,32 @@
+{
+    "files.associations": {
+        "stdio.h": "c",
+        "unistd.h": "c",
+        "string.h": "c",
+        "fcntl.h": "c",
+        "queue.h": "c",
+        "stdlib.h": "c",
+        "io-common.h": "c",
+        "io-util.h": "c",
+        "io-toolkit.h": "c",
+        "__bit_reference": "c",
+        "bitset": "c",
+        "chrono": "c",
+        "pthread.h": "c",
+        "semaphore.h": "c",
+        "cdefs.h": "c",
+        "select.h": "c",
+        "stddef.h": "c",
+        "regex.h": "c",
+        "poll.h": "c",
+        "my_poll.h": "c",
+        "loop-select.h": "c",
+        "loop-poll.h": "c",
+        "loop-epoll.h": "c",
+        "event.h": "c",
+        "types.h": "c",
+        "__config": "cpp",
+        "ioctl.h": "c",
+        "hash_map.h": "c"
+    }
+}
